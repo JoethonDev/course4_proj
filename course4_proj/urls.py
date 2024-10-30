@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from movies import views as mv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("search/", mv.search_view, name="search"),
+    path(
+        "search-wait/<uuid:task_id>/", mv.wait_view, name="wait-view"
+    ),
+    path("search-results/", mv.result_view, name="result-view")
 ]
